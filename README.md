@@ -1,20 +1,20 @@
-# simple-alert
-Simple Alert - WordPress Plugin
+# Ticket Booking add-on for Contact form 7
+This is simple ticket booking add-on for Contact Form 7 with default 100 tickets. This plugin add CF7 Form tag [ticket_book_cf7] so it easy to use with few click.
 
-This is a simple alert box plugin which is configurable from wp-admin settings where user have choice to select post, page or custom post type to show alert box with custom text.
+![Image of Ticket Booking](http://demo.bandunigroup.com/wp-content/uploads/2020/02/tb1.png)
+
 
 ### Plugin Settings
-**WP Login :point_right: WP Admin :point_right: Settings :point_right: Simple Alert**
+**WP Login :point_right: WP Admin :point_right: Contact :point_right: Contact Form**
 
-In plugin settings you can set where to show alert box post, page or custom post type. This plugin has full support for all custom post type example: woo products.
+![Image of Ticket Booking](http://demo.bandunigroup.com/wp-content/uploads/2020/02/tb2.png)
 
-* Add Alert Text to show on front.
 
-* Select post, page or custom post type where you want to show alert box with alert text.
+* Prepare other fields in Contact Form 7.
 
-![Image of Simple Alet](http://demo.bandunigroup.com/wp-content/uploads/2020/02/sa1.jpg)
+* Select [ticket_book_cf7] and you done. Now you can copy/past contact form 7 shortcode to any page you want. 
 
 ### Front End
-Once you done with setting, alert box will show on front of website for only those post type which you set in setting.
+In front-end you will see 100 ticket list, and able to select any or all ticket, note you can only select a ticket on page.
 
 :beer:
