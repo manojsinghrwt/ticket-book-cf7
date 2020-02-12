@@ -15,6 +15,8 @@ This is simple ticket booking add-on for Contact Form 7 with default 100 tickets
 * Select [ticket_book_cf7] and you done. Now you can copy/past contact form 7 shortcode to any page you want. 
 
 ### Front End
-In front-end you will see 100 ticket list, and able to select any or all ticket, note you can only select a ticket on page.
+In front-end you will see 100 ticket list, and able to select any or all ticket, you can only select a ticket once in a page.
+
+![Image of Ticket Booking](http://demo.bandunigroup.com/wp-content/uploads/2020/02/tb3.png)
 
 :beer:
