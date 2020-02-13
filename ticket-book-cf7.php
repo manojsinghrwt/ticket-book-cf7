@@ -37,6 +37,17 @@ class Ticket_Book_Cf7 {
 		add_action('wpcf7_init', array($this,'wpcf7_add_form_tag_ticket_book_cf7'), 10);
 		add_action("wpcf7_before_send_mail", array($this,"save_ticket_book_cf7"));
 		add_action( 'wpcf7_admin_init', array($this,'wpcf7_add_tag_generator_ticket_book_cf7'), 35 );
+		add_action( 'wp_footer', array($this,'cf7_fix_refresh_issue'));
+	}
+	function cf7_fix_refresh_issue(){
+		global $wp;
+		?>
+		<script type="text/javascript">
+		document.addEventListener( 'wpcf7mailsent', function( event ) {
+		    location = '<?php echo get_permalink(get_queried_object_id()); ?>';
+		}, false );
+		</script>
+		<?php
 	}
 
 	function is_contact_form_7_active_ticket_book_cf7() {
@@ -115,7 +126,7 @@ class Ticket_Book_Cf7 {
 		$html .= '<style>span.ticket_book{display:inline-table;min-width:130px;}</style><p><span '. $inputid .' class="wpcf7-form-control wpcf7-checkbox ' . $atts['class'] . '">';
 			for($i=1; $i<=100; $i++){
 				$checked 	= 	$result[$i] ? ' checked disabled ': '' ;
-			 	$html 	.= '<span class="ticket_book" ><input name="ticket_book[tk'.$i.']" value="1" type="checkbox" '.$checked.'><span class="wpcf7-list-item-label">Ticket ['.$i.']</span></span>';
+			 	$html 	.= '<span class="ticket_book" ><label for="tkbinput'.$i.'" class="wpcf7-list-item-label"><input id="tkbinput'.$i.'" name="ticket_book[tk'.$i.']" value="1" type="checkbox" '.$checked.'> Ticket ['.$i.']</label></span>';
 			}
 		 $html .= '</span>
 			<input type="hidden" name="page_id" value="'.$pid.'"/>		
