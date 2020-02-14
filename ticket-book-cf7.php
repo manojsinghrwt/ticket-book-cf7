@@ -32,12 +32,19 @@ define( 'TICKET_BOOK_CF7_VERSION', '1.0.0' );
 class Ticket_Book_Cf7 {
 	public function __construct() {
 		register_activation_hook( __FILE__, array($this,'intall_db_ticket_book_cf7'));
+		add_action( 'init', array($this,'load_plugin_textdomain'));
 		add_action( 'admin_init', array($this,'is_contact_form_7_active_ticket_book_cf7') );
 		add_action( 'deactivated_plugin', array($this,'detect_deactivate_ticket_book_cf7'), 10, 2 );
-		add_action('wpcf7_init', array($this,'wpcf7_add_form_tag_ticket_book_cf7'), 10);
-		add_action("wpcf7_before_send_mail", array($this,"save_ticket_book_cf7"));
+		add_action( 'wpcf7_init', array($this,'wpcf7_add_form_tag_ticket_book_cf7'), 10);
+		add_action( 'wpcf7_before_send_mail', array($this,'save_ticket_book_cf7'));
 		add_action( 'wpcf7_admin_init', array($this,'wpcf7_add_tag_generator_ticket_book_cf7'), 35 );
 		add_action( 'wp_footer', array($this,'cf7_fix_refresh_issue'));
+	}	
+	function load_plugin_textdomain(){
+		$domain 	= 	'ticket-book-cf7';
+		$locale 	= 	apply_filters('plugin_locale',get_locale(),$domain);
+		load_textdomain($domain,trailingslashit(WP_LANG_DIR).$domain.'/'.$domain.'-'.$locale.'.mo');
+		load_plugin_textdomain( $domain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 	function cf7_fix_refresh_issue(){
 		global $wp;
@@ -64,7 +71,7 @@ class Ticket_Book_Cf7 {
 		<div class="error">
 			<p>
 				<?php printf(
-					__('<b style="color:red">%s</b> must be installed and activated for the Ticket Book for CF7 plugin to work', 'ticket-book-cf7'),
+					__('%s must be installed and activated for the Ticket Book for CF7 plugin to work', 'ticket-book-cf7'),
 					'<a href="'.admin_url('plugin-install.php?tab=search&s=contact+form+7').'">Contact Form 7</a>'
 				); ?>
 			</p>
@@ -201,7 +208,7 @@ class Ticket_Book_Cf7 {
 
 					<table class="form-table"><tbody>
 						<tr>
-							<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html( __( 'Name', 'contact-form-7-ticket_book_cf7' ) ); ?></label></th>
+							<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html( __( 'Name', 'ticket-book-cf7' ) ); ?></label></th>
 							<td>
 								<input type="text" name="name" class="tg-name oneline" id="<?php echo esc_attr( $args['content'] . '-name' ); ?>" /><br>
 								<em><?php echo esc_html( __( 'This can be anything, but should be changed from the default generated "ticket_book_cf7". For better security, change "ticket_book_cf7" to something else.', 'ticket-book-cf7' ) ); ?></em>
